@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import { NavBar } from '../components'
-import { StoriesList, StoriesInsert, StoriesUpdate } from '../pages'
+import { NavBar } from './components'
+import { StoriesList, StoriesInsert, StoriesUpdate } from './pages'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
