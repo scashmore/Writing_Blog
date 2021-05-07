@@ -7,6 +7,46 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `
+const Update = styled.div`
+    color: #ef9b0f;
+    cursor: pointer;
+`
+
+const Delete = styled.div`
+    color: #ff0000;
+    cursor: pointer;
+`
+
+class UpdateStory extends Component {
+    updateUser = event => {
+        event.preventDefault()
+
+        window.location.href = `/stories/update/${this.props.id}`
+    }
+
+    render() {
+        return <Update onClick={this.updateUser}>Update</Update>
+    }
+}
+
+class DeleteStory extends Component {
+    deleteUser = event => {
+        event.preventDefault()
+
+        if (
+            window.confirm(
+                `Do tou want to delete the story ${this.props.id} permanently?`,
+            )
+        ) {
+            api.deleteMovieById(this.props.id)
+            window.location.reload()
+        }
+    }
+
+    render() {
+        return <Delete onClick={this.deleteUser}>Delete</Delete>
+    }
+}
 
 class StoriesList extends Component {
     constructor(props) {
@@ -53,6 +93,28 @@ class StoriesList extends Component {
                 Header: 'author',
                 accessor: 'author',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
+            },
+            {
+                Header: '',
+                accessor: '',
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <DeleteStory id={props.original._id} />
+                        </span>
+                    )
+                },
+            },
+            {
+                Header: '',
+                accessor: '',
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <UpdateStory id={props.original._id} />
+                        </span>
+                    )
+                },
             },
         ]
 

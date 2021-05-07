@@ -1,7 +1,7 @@
 
 const Story = require('../models/story-model');
 
-createMovie = (req, res) => {
+createStory = (req, res) => {
     const body = req.body
 
     if (!body) {
@@ -34,7 +34,7 @@ createMovie = (req, res) => {
         })
 }
 
-updateMovie = async (req, res) => {
+updateStory = async (req, res) => {
     const body = req.body
 
     if (!body) {
@@ -72,7 +72,7 @@ updateMovie = async (req, res) => {
     })
 }
 
-deleteMovie = async (req, res) => {
+deleteStory = async (req, res) => {
     await Story.findOneAndDelete({ _id: req.params.id }, (err, story) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -88,7 +88,7 @@ deleteMovie = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-getMovieById = async (req, res) => {
+getStoryById = async (req, res) => {
     await Story.findOne({ _id: req.params.id }, (err, story) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -103,7 +103,7 @@ getMovieById = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-getMovies = async (req, res) => {
+getStories = async (req, res) => {
     await Story.find({}, (err, stories) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -118,7 +118,7 @@ getMovies = async (req, res) => {
 }
 
 module.exports = {
-    createStories,
+    createStory,
     updateStory,
     deleteStory,
     getStories,
