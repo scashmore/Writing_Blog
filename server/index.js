@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
 const db = require('./db')
 const storyRouter = require('./routes/story-router')
@@ -7,7 +8,7 @@ const storyRouter = require('./routes/story-router')
 const app = express();
 const apiPort = 3000;
 
-app.use(bodyParser.urlencoded({extended: ture}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.use(bodyParser.json());
 

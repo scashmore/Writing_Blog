@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import ReactTable from 'react-table'
+import ReactTable from 'react-table-6'
 import api from '../api'
+
+import 'react-table-6/react-table.css'
 
 import styled from 'styled-components'
 
@@ -90,7 +92,7 @@ class StoriesList extends Component {
                 filterable: true,
             },
             {
-                Header: 'author',
+                Header: 'Author',
                 accessor: 'author',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },
