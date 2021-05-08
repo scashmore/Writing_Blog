@@ -19,17 +19,17 @@ class Links extends Component {
         return (
             <React.Fragment>
                 <Link to="/" className="navbar-brand">
-                    Better Fanfiction
+                    FART
                 </Link>
                 <Collapse>
                     <List>
                         <Item>
-                            <Link to="/movies/list" className="nav-link">
+                            <Link to="/stories/list" className="nav-link">
                                 List Stories
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/movies/create" className="nav-link">
+                            <Link to="/stories/create" className="nav-link">
                                 Create Stories
                             </Link>
                         </Item>

@@ -1,23 +1,23 @@
-import React, { Component } from 'react'
-import ReactTable from 'react-table-6'
-import api from '../api'
+import React, { Component } from 'react';
+import ReactTable from 'react-table-6';
+import api from '../api';
 
-import 'react-table-6/react-table.css'
+import 'react-table-6/react-table.css';
 
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
-`
+`;
 const Update = styled.div`
     color: #ef9b0f;
     cursor: pointer;
-`
+`;
 
 const Delete = styled.div`
     color: #ff0000;
     cursor: pointer;
-`
+`;
 
 class UpdateStory extends Component {
     updateUser = event => {
@@ -40,7 +40,7 @@ class DeleteStory extends Component {
                 `Do tou want to delete the story ${this.props.id} permanently?`,
             )
         ) {
-            api.deleteMovieById(this.props.id)
+            api.deleteStoryById(this.props.id)
             window.location.reload()
         }
     }
@@ -63,7 +63,7 @@ class StoriesList extends Component {
     componentDidMount = async () => {
         this.setState({ isLoading: true })
 
-        await api.getAllMovies().then(stories => {
+        await api.getAllStories().then(stories => {
             this.setState({
                 stories: stories.data.data,
                 isLoading: false,
@@ -90,11 +90,6 @@ class StoriesList extends Component {
                 Header: 'Rating',
                 accessor: 'rating',
                 filterable: true,
-            },
-            {
-                Header: 'Author',
-                accessor: 'author',
-                Cell: props => <span>{props.value.join(' / ')}</span>,
             },
             {
                 Header: '',
