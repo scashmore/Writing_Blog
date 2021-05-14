@@ -43,6 +43,7 @@ class StoriesInsert extends Component {
         this.state = {
             title: '',
             rating: '',
+            author: '',
         }
     }
 
@@ -59,21 +60,27 @@ class StoriesInsert extends Component {
         this.setState({ rating })
     }
 
+    handleChangeAuthor = async event => {
+        const author = event.target.value
+        this.setState({ author })
+    }
+
     handleIncludeStory = async () => {
-        const { title, rating } = this.state
-        const payload = { title, rating}
+        const { title, rating, author } = this.state
+        const payload = { title, rating, author }
 
         await api.insertStory(payload).then(res => {
             window.alert(`Story inserted successfully`)
             this.setState({
                 title: '',
                 rating: '',
+                author: '',
             })
         })
     }
 
     render() {
-        const { title, rating } = this.state
+        const { title, rating, author } = this.state
         return (
             <Wrapper>
                 <Title>Create Story</Title>
@@ -95,6 +102,13 @@ class StoriesInsert extends Component {
                     pattern="[0-9]+([,\.][0-9]+)?"
                     value={rating}
                     onChange={this.handleChangeInputRating}
+                />
+
+                <Label>Author: </Label>
+                <InputText
+                    type="text"
+                    value={author}
+                    onChange={this.handleChangeAuthor}
                 />
 
                 <Button onClick={this.handleIncludeStory}>Add Story</Button>
