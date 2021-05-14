@@ -1,12 +1,105 @@
 
 import React, { Component } from 'react'
+import api from '../api'
+
+import styled from 'styled-components'
+
+const Title = styled.h1.attrs({
+    className: 'h1',
+})``
+
+const Wrapper = styled.div.attrs({
+    className: 'form-group',
+})`
+    margin: 0 30px;
+`
+
+const Label = styled.label`
+    margin: 5px;
+`
+
+const InputText = styled.input.attrs({
+    className: 'form-control',
+})`
+    margin: 5px;
+`
+
+const Button = styled.button.attrs({
+    className: `btn btn-primary`,
+})`
+    margin: 15px 15px 15px 5px;
+`
+
+const CancelButton = styled.a.attrs({
+    className: `btn btn-danger`,
+})`
+    margin: 15px 15px 15px 5px;
+`
 
 class StoriesInsert extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            title: '',
+            rating: '',
+        }
+    }
+
+    handleChangeInputName = async event => {
+        const title = event.target.value
+        this.setState({ title })
+    }
+
+    handleChangeInputRating = async event => {
+        const rating = event.target.validity.valid
+            ? event.target.value
+            : this.state.rating
+
+        this.setState({ rating })
+    }
+
+    handleIncludeStory = async () => {
+        const { title, rating } = this.state
+        const payload = { title, rating}
+
+        await api.insertStory(payload).then(res => {
+            window.alert(`Story inserted successfully`)
+            this.setState({
+                title: '',
+                rating: '',
+            })
+        })
+    }
+
     render() {
+        const { title, rating } = this.state
         return (
-            <div>
-                <p>In this page you'll see the form to add a stories</p>
-            </div>
+            <Wrapper>
+                <Title>Create Story</Title>
+
+                <Label>Title: </Label>
+                <InputText
+                    type="text"
+                    value={title}
+                    onChange={this.handleChangeInputName}
+                />
+
+                <Label>Rating: </Label>
+                <InputText
+                    type="number"
+                    step="0.1"
+                    lang="en-US"
+                    min="0"
+                    max="10"
+                    pattern="[0-9]+([,\.][0-9]+)?"
+                    value={rating}
+                    onChange={this.handleChangeInputRating}
+                />
+
+                <Button onClick={this.handleIncludeStory}>Add Story</Button>
+                <CancelButton href={'/stories/list'}>Cancel</CancelButton>
+            </Wrapper>
         )
     }
 }
