@@ -33,6 +33,11 @@ class Links extends Component {
                                 Create Stories
                             </Link>
                         </Item>
+                        <Item>
+                            <Link to="/settings" className="nav-link">
+                                Settings
+                            </Link>
+                        </Item>
                     </List>
                 </Collapse>
             </React.Fragment>

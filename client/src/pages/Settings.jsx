@@ -4,6 +4,7 @@ class Settings extends Component {
     state = {
         color: '#212529',
         text: '#fff',
+        fontFamily: 'arial',
     }
     navChangeHandler = e => {
         this.setState({
@@ -15,10 +16,16 @@ class Settings extends Component {
             text: e.target.value
         })
     }
+    fontChangeHandler = e => {
+        this.setState({
+            font: e.target.value
+        })
+    }
     render () {
         const styleNav = {
             background: this.state.color,
             color: this.state.text,
+            fontFamily: this.state.font,
         }
         return(
             <>
@@ -38,6 +45,20 @@ class Settings extends Component {
                 value={this.setState.text}
                 type="color"
                 />
+                </div>
+                <div className='font'>
+                <label>Font:</label> {' '}
+                <select
+                onChange={this.fontChangeHandler}
+                value={this.setState.font}>
+                    <option value='arial'>Arial</option>
+                    <option value='cambria'>Cambria</option>
+                    <option value='comic sans ms'>Comic Sans</option>
+                    <option value='courier new'>Courier New</option>
+                    <option value='georgia'>Georgia</option>
+                    <option value='times'>Times</option>
+                    <option value='verdana'>Verdana</option>
+                </select>
                 </div>
             </div>
             <div style={styleNav}>
